@@ -86,7 +86,16 @@ public class StringArrayUtils {
          */ // TODO
         public static boolean isPangramic (String[]array){
             String string = Arrays.toString(array).toLowerCase();
-           return string.chars().filter(i -> i >= 'a' && i <= 'z').distinct().count() == 26;
+////           return string.chars().filter(i -> i >= 'a' && i <= 'z').distinct().count() == 26;
+            String[] removed;
+            int count = 0;
+            char letter = 'a';
+            for (int i = 0; i < string.length(); i++) {
+                if (letter == string.charAt(i)) {
+                    letter++;
+                }
+            }
+            return false;
         }
 
         /**
@@ -112,10 +121,24 @@ public class StringArrayUtils {
          * @return array with identical contents excluding values of `value`
          */ // TODO
         public static String[] removeValue (String[]array, String valueToRemove){
+            String[] removed;
+            int count = 0;
+            int j = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].equals(valueToRemove)) {
+                    count++;
 
-
-            return null;
-        }
+                }
+            }
+            removed = new String[array.length-count];
+            for (int i = 0; i < array.length; i++) {
+                if (!array[i].equals(valueToRemove)) {
+                        removed[j] = array[i];
+                        j++;
+                    }
+            }
+            return removed;
+    }
 
         /**
          * @param array array of chars
