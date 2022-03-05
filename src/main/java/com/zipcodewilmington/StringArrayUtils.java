@@ -173,16 +173,28 @@ public class StringArrayUtils {
         }
         return stray;
     }
-        /**
-         * @param array array of chars
-         * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
-         */ // TODO
-        public static String[] packConsecutiveDuplicates (String[]array){
 
-
-            return null;
+    /**
+     * @param array array of chars
+     * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
+     */ // TODO
+    public static String[] packConsecutiveDuplicates(String[] array) {
+        int count = 0;
+        int length = array.length;
+        String[] stray = new String[length];
+        for (int i = 0; i < array.length; i++) {
+            stray[count] = array[i];
+            while(i+1 < array.length && array[i].equals(array[i+1])) {
+                stray[count] += array[i];
+                i++;
+            }
+            count++;
         }
+
+        String[] nStray = Arrays.copyOfRange(stray, 0, count);
+        return nStray;
 
 
     }
+}
 
